@@ -27,3 +27,10 @@ Projede kullanılan teknolojiler
  - Bootstrap
  - React Router 
 
+## ScreenShotlar
+
+![Home](https://github.com/atelliogludev/rickandmorty-react/blob/main/public/screenshot/ss1.jpg?raw=true)
+
+![Episode Detail](https://github.com/atelliogludev/rickandmorty-react/blob/main/public/screenshot/ss2.jpg?raw=true)
+
+![Character Detail](https://github.com/atelliogludev/rickandmorty-react/blob/main/public/screenshot/ss3.jpg?raw=true)
