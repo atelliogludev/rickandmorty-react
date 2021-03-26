@@ -1,0 +1,100 @@
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.characters-row {
+  margin-top: 20px;
+}
+
+.character-link {
+  margin-bottom: 10px;
+  display: flex;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+}
+
+.select-box button {
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.sort-box {
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.characters-name {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: black;
+}
+
+.header-home {
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: large;
+  width: 100%;
+}
+
+.footer {
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 100px;
+  text-align: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer p {
+  margin: 0px;
+  text-align: center;
+}
+
+.pagination {
+display: flex;
+flex: 1;
+  text-align: center;
+  float: left;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-weight: bold;
+}
+
+.card-body {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.card-body-index {
+  text-align: center;
+}
+
+.pagination-anchor {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.pagination-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pagination-active {
+    background-color: #333;
+    color: #fff;
+}
