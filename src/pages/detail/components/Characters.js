@@ -14,9 +14,8 @@ export default function Characters({ data }) {
 
   useEffect(() => {
     filteredCharacters.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
-    console.log(filteredCharacters);
-    setFilteredCharacters(JSON.parse(JSON.stringify(filteredCharacters)));
-  }, [sortBy]);
+    setFilteredCharacters([...filteredCharacters ]);
+    }, [sortBy]);
 
   useEffect(() => {
     setProperties(getPropertyOptions(data));
@@ -24,13 +23,24 @@ export default function Characters({ data }) {
   }, [data]);
 
   useEffect(() => {
+    //['species','gender']
     let selectedKeys = Object.keys(selecteds);
     if (selectedKeys.length > 0) {
+      //data : tüm karakterler
+      //item : tek karakter Burada Karakter datalarını tek tek iterate ediyor
       let tempFilteredData = data.filter((item) => {
+        //selectedKeys : selected state'inde bulunan keyler (örn: ['species', 'gender'])
+        //key : selected state'indeki sırası gelen key 'gender'
         let filteredKeys = selectedKeys.filter((key) => {
+          //Eğer selecteds state'inde bu keye (örn: 'gender') "All" değeri atandıysa, filter'a true dön
           if (selecteds[key] === "All") return true;
+          //Eğer selecteds state'inde bu keye (örn: 'gender') atanan değer (örn: 'Male') ile
+          //karakter'in keyini (örn: 'gender') karşılaştır
           return item[key] === selecteds[key];
         });
+
+        //Yukardeki filteredKeys Filtresi sonucunda bütün selected filtrelerinden karakter
+        //true döndürdüyse, selectedKeys ile aynı uzunlukta bir array oluşacak
         return filteredKeys.length === selectedKeys.length;
       });
       setFilteredCharacters(tempFilteredData);
@@ -38,6 +48,7 @@ export default function Characters({ data }) {
   }, [selecteds]);
 
   const setFromChild = (property, value) => {
+    // setSelecteds({species: 'human', gender: 'male', gender: 'female'})
     setSelecteds({ ...selecteds, [property]: value });
   };
 
@@ -45,18 +56,28 @@ export default function Characters({ data }) {
     <Row>
       <Col xs={12}>
         <Row>
-          {Object.keys(properties).map((item) => (
-            <Col lg={2} xs={6} key={`selectbox${item}`}>
-              <SelectBox
-                propertyKey={item}
-                setFromChild={setFromChild}
-                options={properties[item]}
-                selected={
-                  selecteds[item] !== undefined ? selecteds[item] : item
-                }
-              />
-            </Col>
-          ))}
+          {
+            //properties "spices,gender,status vb" her biri için selectbox oluşturuldu
+            Object.keys(properties).map((item) => (
+              <Col lg={2} xs={6} key={`selectbox${item}`}>
+                <SelectBox
+                /* burdaki propertyKey spices,gender vb */ 
+                  propertyKey={item}
+                  setFromChild={setFromChild}
+                  options={
+                    properties[
+                      item
+                    ] /* dönen keyin "spices,gender" valuesi olan array "female,male gibi" */
+                  }
+                  selected={
+                    // selecteds ta ise eğer bir key seçili ise gender spices vb bunun değeri "male female tek bir value"
+                    // eğer değer yoksa item olarak sadece keyi gidiyor örn gender
+                    selecteds[item] !== undefined ? selecteds[item] : item
+                  }
+                />
+              </Col>
+            ))
+          }
         </Row>
         <Row>
           {Object.keys(properties).map((item) => (
@@ -69,7 +90,7 @@ export default function Characters({ data }) {
         <Row className="characters-row">
           {filteredCharacters.map((item) => {
             return (
-              <Col lg={2} xs={6} key={`character${item.id}`} >
+              <Col lg={2} xs={6} key={`character${item.id}`}>
                 <Link className="character-link" to={`/character/${item.id}`}>
                   <p className="characters-name">
                     <img style={{ maxWidth: "100%" }} src={item.image}></img>

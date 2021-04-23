@@ -10,9 +10,11 @@ export default function SelectBox({ options, selected, setFromChild, propertyKey
       id="input-group-dropdown-1"
       className="select-box"
     >
-      {options.map((item) => {
+      {
+      /* dönen keyin gender valuesi olan array "female,male gibi" */
+      options.map((item) => {
         return(
-          <Dropdown.Item  onClick={() => setFromChild(propertyKey, item)} >{item}</Dropdown.Item>
+          <Dropdown.Item  onClick={() => setFromChild(propertyKey, item)/*gender female gibi*/ } >{item}</Dropdown.Item>
         )
       })}
       <Dropdown.Divider />
